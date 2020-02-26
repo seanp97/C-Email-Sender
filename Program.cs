@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
@@ -17,15 +17,14 @@ namespace myConsoleApp
             string userEmail = Console.ReadLine();
             mail.From = new System.Net.Mail.MailAddress(userEmail);
 
-            // The important part -- configuring the SMTP client
             SmtpClient smtp = new SmtpClient();
-            smtp.Port = 587;   // [1] You can try with 465 also, I always used 587 and got success
+            smtp.Port = 587;
             smtp.EnableSsl = true;
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network; // [2] Added this
-            smtp.UseDefaultCredentials = false; // [3] Changed this
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.UseDefaultCredentials = false;
             Console.WriteLine("Password?");
             string passWord = Console.ReadLine();
-            smtp.Credentials = new NetworkCredential(userEmail, passWord);  // [4] Added this. Note, first parameter is NOT string.
+            smtp.Credentials = new NetworkCredential(userEmail, passWord);
             smtp.Host = "smtp.gmail.com";
 
             //recipient address
